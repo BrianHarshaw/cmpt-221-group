@@ -2,27 +2,38 @@
 /**
  * Simple User Table
  */
-CREATE TABLE IF NOT EXISTS Users_T (
-  userID 								SERIAL		  		NOT NULL	UNIQUE,
-  email                   				TEXT        		NOT NULL,
-  firstName 							TEXT 				NOT NULL,
-  lastName 								TEXT 				NOT NULL,
-  PRIMARY KEY (userID)
+CREATE TABLE IF NOT EXISTS User_T (
+  	userID 								SERIAL		  		NOT NULL	UNIQUE,
+  	email                   			TEXT        		NOT NULL,
+  	firstName 							TEXT 				NOT NULL,
+  	lastName 							TEXT 				NOT NULL,
+  	PRIMARY KEY (userID)
 );
 
-CREATE TABLE IF NOT EXISTS Assets_T (
-  assetID								SERIAL				NOT NULL	UNIQUE,
-  userID								SERIAL				NOT NULL,
-  status								TEXT				NOT NULL,
-  model									TEXT				NOT NULL,
-  asset_name							TEXT				NOT NULL,
-  deptID								SERIAL				NOT NULL,
-  PRIMARY KEY (assetID),
-  CONSTRAINT Assets_T FOREIGN KEY (userID) REFERENCES Users_T (userID)
+CREATE TABLE IF NOT EXISTS Asset_T (
+  	assetID								SERIAL				NOT NULL	UNIQUE,
+  	userID								SERIAL				NOT NULL,
+  	status								TEXT				NOT NULL,
+  	model								TEXT				NOT NULL,
+  	asset_name							TEXT				NOT NULL,
+  	deptID								SERIAL				NOT NULL	UNIQUE,
+  	PRIMARY KEY (assetID),
+  	CONSTRAINT Asset_T FOREIGN KEY (userID) REFERENCES User_T (userID),
+	CONSTRAINT Asset_T 	FOREIGN KEY (deptID) REFERENCES Department_T (deptID)
 );
 
-INSERT INTO Users_T (userID, email, firstName, lastName) VALUES ('2', '@gmail.com', 'jon', 'smith');
-INSERT INTO Assets_T (assetID, userID, status, model, asset_name, deptID) VALUES 
-('1', '2', 'working', '1', 'laptop', '0');
+CREATE TABLE IF NOT EXISTS Deptarment_T (
+	deptID								SERIAL				NOT NULL	UNIQUE,
+	locationID							TEXT				NOT NULL,
+	budgetID							SERIAL				NOT NULL,
+	PRIMARY KEY (deptID)
+);
 
-SELECT * FROM Assets_T;
+CREATE TABLE IF NOT EXISTS Permission_T (
+	userID								SERIAL				NOT NULL	UNIQUE,
+	roleID								TEXT				NOT NULL,
+	firstName							TEXT				NOT NULL,
+	lastName							TEXT				NOT NULL,
+	PRIMARY KEY (roleID),
+	CONSTRAINT Permission_T FOREIGN KEY (userID) REFERENCES User_T (userID)
+);
