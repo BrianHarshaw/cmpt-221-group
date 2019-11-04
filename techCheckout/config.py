@@ -1,3 +1,4 @@
+#Code taken from https://github.com/Dr-Crow/cmpt-221-examples/tree/master/Examples/example_of_new_layout
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
