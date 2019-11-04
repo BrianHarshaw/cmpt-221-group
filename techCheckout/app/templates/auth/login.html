@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
-    <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{{ url_for ('static',filename='css/materialize.min.css')}}"  media="screen,projection"/>
+{% extends base.html %}
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-<body>
 
-</body>
-</html>
+{% block head %}
+{{super()}}
+{% block head %}
+
+{% block body %}
+     <form method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ form.email.label }} {{ form.email() }}
+                    {{ form.password.label }} {{ form.password() }}
+                    {{ form.remember_me.label }} {{ form.remember_me() }}
+                    {{ form.submit() }}
+     </form>
+{% endblock body %}
