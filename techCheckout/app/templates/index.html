@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% block head %}
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>{% block title %} Starter Template - Materialize {% endblock title %}</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  {% block head %}
 </head>
 <body>
+{% block body %}
+{% block nav %}
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
       <ul class="right hide-on-med-and-down">
@@ -23,6 +27,7 @@
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+  {% endblock nav %}
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
@@ -75,7 +80,7 @@
     </div>
     <br><br>
   </div>
-
+<!--
   <footer class="page-footer orange">
     <div class="container">
       <div class="row">
@@ -105,6 +110,7 @@
         </div>
       </div>
     </div>
+    -->
     <div class="footer-copyright">
       <div class="container">
       Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
@@ -118,5 +124,6 @@
   <script src="../static/js/materialize.js"></script>
   <script src="../static/js/init.js"></script>
 
+  {% endblock body %}
   </body>
 </html>
