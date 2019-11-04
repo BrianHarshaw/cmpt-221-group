@@ -2,7 +2,7 @@
 #and then altered to match our needs.
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from config import config
+from techCheckout import config
 from flask_login import LoginManager
 
 
