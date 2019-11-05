@@ -2,20 +2,18 @@
 #and then altered to match our needs.
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from techCheckout import config
 from flask_login import LoginManager
 
+from config import config
 
 # Create the db object but do not initialize it just yet. Need this here for scope/used in other files like models.py
 db = SQLAlchemy()
-
 
 # Create the login manager object
 login_manager = LoginManager()
 
 # Point login view to the auth blueprint
 login_manager.login_view = 'auth.login'
-
 
 # Create a flask app. Pass in a config
 def create_app(config_name):
