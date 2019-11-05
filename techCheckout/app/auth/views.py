@@ -41,7 +41,7 @@ def login():
 @auth.route('/index')
 @login_required
 def index():
-    return render_template('index.html', first_name="USERNAME", usertype="USERTYPE")
+    return render_template('index.html')
 
 # Logout Notification, return to login page
 @auth.route('/logout')
