@@ -23,7 +23,7 @@ def last_query(last_name):
 
 
 # redirect root route to login screen
-@main.route('/', methods=['GET'])
+@main.route('/')
 def index():
     return redirect("/auth/login")
 

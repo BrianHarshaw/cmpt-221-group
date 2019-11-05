@@ -41,7 +41,7 @@ def login():
 @auth.route('/index')
 @login_required
 def index():
-    return render_template('index.html', username="USERNAME", usertype="USERTYPE")
+    return render_template('index.html', first_name="USERNAME", usertype="USERTYPE")
 
 # Logout Notification, return to login page
 @auth.route('/logout')
@@ -49,4 +49,4 @@ def index():
 def logout():
     logout_user()
     flash('You have been logged out.')
-    return redirect(url_for('/login'))
+    return redirect('/login')
