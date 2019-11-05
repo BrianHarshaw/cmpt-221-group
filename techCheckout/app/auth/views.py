@@ -34,12 +34,18 @@ def login():
 
         # If the email or password incorrect flash a warning
         flash('Invalid email or password.')
-    return render_template('auth/login.html', form=form)
+    return render_template('login.html', form=form)
 
+# Main Index Page
+@auth.route('/index')
+@login_required
+def index():
+    return render_template('index.html', username="USERNAME", usertype="USERTYPE")
 
+# Logout Notification, return to login page
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
     flash('You have been logged out.')
-    return redirect(url_for('main.index'))
+    return redirect(url_for('/login'))
