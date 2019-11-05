@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Asset_T (
 	CONSTRAINT Asset_T 	FOREIGN KEY (deptID) REFERENCES Department_T (deptID)
 );
 
-CREATE TABLE IF NOT EXISTS Deptarment_T (
+CREATE TABLE IF NOT EXISTS Department_T (
 	deptID								SERIAL				NOT NULL	UNIQUE,
 	locationID							TEXT				NOT NULL,
 	budgetID							SERIAL				NOT NULL,
