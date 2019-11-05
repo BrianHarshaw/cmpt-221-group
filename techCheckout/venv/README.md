@@ -1,1 +1,0 @@
-Following format from slides.
