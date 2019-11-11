@@ -5,8 +5,14 @@ CREATE TABLE IF NOT EXISTS Role_T (
     roleID          SERIAL          NOT NULL        UNIQUE,
     roleName        TEXT            NOT NULL,
     PRIMARY KEY(roleID),
-)
+);
 
+CREATE TABLE IF NOT EXISTS Department_T (
+	departmentID						SERIAL				NOT NULL	UNIQUE,
+	locationID							TEXT				NOT NULL,
+	budgetID							SERIAL				NOT NULL,
+	PRIMARY KEY (departmentID)
+);
 
 CREATE TABLE IF NOT EXISTS User_T (
   	userID 								SERIAL		  		NOT NULL	UNIQUE,
@@ -17,7 +23,7 @@ CREATE TABLE IF NOT EXISTS User_T (
   	phoneNumber                         BIGINT,
   	roleID                              INT                 NOT NULL,
   	PRIMARY KEY (userID),
-  	FOREIGN KEY (roledID) REFERENCES Role_T,
+  	FOREIGN KEY (roleID) REFERENCES Role_T
 );
 
 CREATE TABLE IF NOT EXISTS Asset_T (
@@ -28,17 +34,10 @@ CREATE TABLE IF NOT EXISTS Asset_T (
   	assetName							TEXT				NOT NULL,
   	deptID								SERIAL				NOT NULL	UNIQUE,
   	PRIMARY KEY (assetID),
-  	FOREIGN KEY (userID) REFERENCES User_T,
-	
+  	FOREIGN KEY (userID) REFERENCES User_T
 );
 
-CREATE TABLE IF NOT EXISTS Department_T (
-	departmentID						SERIAL				NOT NULL	UNIQUE,
-	locationID							TEXT				NOT NULL,
-	budgetID							SERIAL				NOT NULL,
-	PRIMARY KEY (deptID),
-	FOREIGN KEY (deptID) REFERENCES Asset_T,
-);
+
 
 CREATE TABLE IF NOT EXISTS Permission_T (
 	userID								SERIAL				NOT NULL	UNIQUE,
