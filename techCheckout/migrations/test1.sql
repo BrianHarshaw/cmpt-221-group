@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS Users;
 CREATE TABLE IF NOT EXISTS Role_T (
     roleID          SERIAL          NOT NULL        UNIQUE,
     roleName        TEXT            NOT NULL,
-    PRIMARY KEY(roleID),
+    PRIMARY KEY(roleID)
 );
 
 CREATE TABLE IF NOT EXISTS Department_T (
@@ -45,5 +45,5 @@ CREATE TABLE IF NOT EXISTS Permission_T (
 	firstName							TEXT				NOT NULL,
 	lastName							TEXT				NOT NULL,
 	PRIMARY KEY (roleID),
-	FOREIGN KEY (userID) REFERENCES User_T,
+	FOREIGN KEY (userID) REFERENCES User_T
 );
