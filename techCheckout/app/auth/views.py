@@ -21,25 +21,32 @@ def login():
 
         # If user is not empty and password verified
         if user is not None and user.verify_password(form.password.data):
-            # Login the user by a built in Flask-Login function. If no remember me value is passed in
-            # then when the browser closes the user will be logged out due to session being expired
+            # Login the user by a built in Flask-Login function
             login_user(user, form.remember_me.data)
 
-            # Next is set when a user tries to access a page where a login is required. If next is not set, meaning
-            # someone tried to directly browse to the login page, we defaultly redirect them to the index page
+            # Next set when user tries to access a page where a login is required. 
+            # If next not set, we redirect user to login page
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
-                next = url_for('main.index')
+                next = '/login'
             return redirect(next)
 
         # If the email or password incorrect flash a warning
         flash('Invalid email or password.')
-    return render_template('auth/login.html', form=form)
+        
+    return render_template('login.html', form=form)
 
+# Main Index Page
+@auth.route('/')
+@auth.route('/index')
+@login_required
+def index():
+    return render_template('index.html')
 
+# Logout Notification, return to login page
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
     flash('You have been logged out.')
-    return redirect(url_for('main.index'))
+    return redirect('/login')
