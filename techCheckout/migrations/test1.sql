@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Asset_T (
   	asset_name							TEXT				NOT NULL,
   	deptID								SERIAL				NOT NULL	UNIQUE,
   	PRIMARY KEY (assetID),
-  	CONSTRAINT Asset_T FOREIGN KEY (userID) REFERENCES User_T (userID),
+  	FOREIGN KEY (userID) REFERENCES User_T,
 	
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Deptarment_T (
 	locationID							TEXT				NOT NULL,
 	budgetID							SERIAL				NOT NULL,
 	PRIMARY KEY (deptID),
-	CONSTRAINT Department_T FOREIGN KEY (deptID) REFERENCES Asset_T (deptID)
+	FOREIGN KEY (deptID) REFERENCES Asset_T,
 );
 
 CREATE TABLE IF NOT EXISTS Permission_T (
@@ -32,5 +32,5 @@ CREATE TABLE IF NOT EXISTS Permission_T (
 	firstName							TEXT				NOT NULL,
 	lastName							TEXT				NOT NULL,
 	PRIMARY KEY (roleID),
-	CONSTRAINT Permission_T FOREIGN KEY (userID) REFERENCES User_T (userID)
+	FOREIGN KEY (userID) REFERENCES User_T,
 );
