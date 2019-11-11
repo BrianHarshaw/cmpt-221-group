@@ -12,7 +12,7 @@ from .forms import LoginForm
 def login():
     # Get login form
     form = LoginForm()
-    return render_template('login.html', title='Sign In', form=form)
+    #return render_template('auth/login.html', title='Sign In', form=form)
 
     # Onces a user submits the form do this
     if form.validate_on_submit():
@@ -29,13 +29,13 @@ def login():
             # If next not set, we redirect user to login page
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
-                next = '/login'
+                next = '/index'
             return redirect(next)
 
         # If the email or password incorrect flash a warning
         flash('Invalid email or password.')
         
-    return render_template('login.html', form=form)
+    return render_template('auth/login.html', form=form)
 
 # Main Index Page
 @auth.route('/')
