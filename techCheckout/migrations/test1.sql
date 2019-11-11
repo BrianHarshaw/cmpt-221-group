@@ -1,9 +1,23 @@
+DROP TABLE IF EXISTS Roles;
+DROP TABLE IF EXISTS Users;
+
+CREATE TABLE IF NOT EXISTS Role_T (
+    roleID          SERIAL          NOT NULL        UNIQUE,
+    roleName        TEXT            NOT NULL,
+    PRIMARY KEY(roleID),
+)
+
+
 CREATE TABLE IF NOT EXISTS User_T (
   	userID 								SERIAL		  		NOT NULL	UNIQUE,
-  	email                   					TEXT        			NOT NULL,
+  	email                   			TEXT        		NOT NULL,
+  	passwordHash                        TEXT                NOT NULL,
   	firstName 							TEXT 				NOT NULL,
   	lastName 							TEXT 				NOT NULL,
-  	PRIMARY KEY (userID)
+  	phoneNumber                         BIGINT,
+  	roleID                              INT                 NOT NULL,
+  	PRIMARY KEY (userID),
+  	FOREIGN KEY (roledID) REFERENCES Role_T,
 );
 
 CREATE TABLE IF NOT EXISTS Asset_T (
@@ -11,15 +25,15 @@ CREATE TABLE IF NOT EXISTS Asset_T (
   	userID								SERIAL				NOT NULL	UNIQUE,
   	status								TEXT				NOT NULL,
   	model								TEXT				NOT NULL,
-  	asset_name							TEXT				NOT NULL,
+  	assetName							TEXT				NOT NULL,
   	deptID								SERIAL				NOT NULL	UNIQUE,
   	PRIMARY KEY (assetID),
   	FOREIGN KEY (userID) REFERENCES User_T,
 	
 );
 
-CREATE TABLE IF NOT EXISTS Deptarment_T (
-	deptID								SERIAL				NOT NULL	UNIQUE,
+CREATE TABLE IF NOT EXISTS Department_T (
+	departmentID						SERIAL				NOT NULL	UNIQUE,
 	locationID							TEXT				NOT NULL,
 	budgetID							SERIAL				NOT NULL,
 	PRIMARY KEY (deptID),
