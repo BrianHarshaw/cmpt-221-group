@@ -12,6 +12,7 @@ from .forms import LoginForm
 def login():
     # Get login form
     form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
 
     # Onces a user submits the form do this
     if form.validate_on_submit():
