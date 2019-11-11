@@ -37,7 +37,22 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Log In</h1>
                   </div>
+                  <form action="" method="post" novalidate>
+                      {{ form.hidden_tag() }}
+                   <p>
+                     {{ form.email.label }}<br>
+                     {{ form.email(size=32) }}
+                   </p>
+                    <p>
+                      {{ form.password.label }}<br>
+                      {{ form.password(size=32) }}
+                     </p>
+                    <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+                    <p>{{ form.submit() }}</p>
+              </form>
+                  <!--
                   <form class="user">
+
                     <div class="form-group">
                         {{ form.email(class_="form-control form-control-user") }}
                     </div>
@@ -50,6 +65,7 @@
 
                     {{ form.submit(class_="btn btn-primary btn-user btn-block") }}
                   </form>
+                  -->
                   <hr>
                   <div class="text-center">
                     <a class="small" href="#">Forgot Password?</a>
