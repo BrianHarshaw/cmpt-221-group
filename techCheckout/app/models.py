@@ -7,14 +7,14 @@ from . import db
 # Describing the Role Table
 class Role(db.Model):
     # Overriding the default name "Role" with roles
-    __tablename__ = 'roles'
+    __tablename__ = "Role_T"
 
     # Describing the columns
     role_id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
     role_name = db.Column(db.Text, nullable=False)
 
     # Back Reference to User Model
-    users = db.relationship('User', backref='role', lazy='dynamic')
+    User_T = db.relationship('User', backref='role', lazy='dynamic')
 
     # How it should look if we call print
     def __repr__(self):
@@ -24,7 +24,7 @@ class Role(db.Model):
 # Describing the User Table
 class User(db.Model):
     # Overriding the default name "User" with users
-    __tablename__ = 'users'
+    __tablename__ = "User_T"
 
     # Describing the columns
     user_id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
