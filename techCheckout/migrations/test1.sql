@@ -37,8 +37,14 @@ CREATE TABLE IF NOT EXISTS Asset_T (
   	FOREIGN KEY (user_id) REFERENCES User_T
 );
 
+INSERT INTO Role_T(role_name) VALUES ('Administrator');
+INSERT INTO Role_T(role_name) VALUES ('Student');
+INSERT INTO Role_T(role_name) VALUES ('Worker');
+INSERT INTO Role_T(role_name) VALUES ('Department Head')
+INSERT INTO Role_T(role_name) VALUES ('Faculty')
 
-
+/*
+Role table is taking the place of this for the time being
 CREATE TABLE IF NOT EXISTS Permission_T (
 	user_id								SERIAL				NOT NULL	UNIQUE,
 	role_id								TEXT				NOT NULL,
@@ -47,3 +53,5 @@ CREATE TABLE IF NOT EXISTS Permission_T (
 	PRIMARY KEY (role_id),
 	FOREIGN KEY (user_id) REFERENCES User_T
 );
+
+ */
