@@ -1,6 +1,8 @@
 #Base code taken from https://github.com/Dr-Crow/cmpt-221-examples/tree/master/Examples/example_of_new_layout
 #and then altered to match our needs.
-from . import db
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+from . import db, login_manager
 
 
 # Spot for all our models
@@ -40,3 +42,26 @@ class User(db.Model):
     # How it should look if we call print
     def __repr__(self):
         return '<User %r>' % self.first_name
+
+    #Attribute error for passwords
+    @property
+    def password(self):
+        raise AttributeError('password is not a valid attribute')
+
+    #Setter that you use to hash a password
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password);
+
+    #Using werkzeug to verify the password against the hash
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash,password);
+
+    #Call to return id of a user
+    def get_id(self):
+        return self.user_id
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
