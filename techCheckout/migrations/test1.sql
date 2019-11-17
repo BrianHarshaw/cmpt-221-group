@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS Users;
 
 CREATE TABLE IF NOT EXISTS Role_T (
     role_id         SERIAL          NOT NULL        UNIQUE,
-    role_name        TEXT            NOT NULL,
+    role_name       TEXT            NOT NULL,
     PRIMARY KEY(role_id)
 );
 
@@ -15,13 +15,13 @@ CREATE TABLE IF NOT EXISTS Department_T (
 );
 
 CREATE TABLE IF NOT EXISTS User_T (
-  	user_id 								SERIAL		  		NOT NULL	UNIQUE,
+  	user_id 							SERIAL		  		NOT NULL	UNIQUE,
   	email                   			TEXT        		NOT NULL,
-  	password_hash                        TEXT                NOT NULL,
+  	password_hash                       TEXT                NOT NULL,
   	first_name 							TEXT 				NOT NULL,
   	last_name 							TEXT 				NOT NULL,
-  	phone_number                         BIGINT,
-  	role_id                              INT                 NOT NULL,
+  	phone_number                        BIGINT,
+  	role_id                             INT                 NOT NULL,
   	PRIMARY KEY (user_id),
   	FOREIGN KEY (role_id) REFERENCES Role_T
 );
@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS Asset_T (
 INSERT INTO Role_T(role_name) VALUES ('Administrator');
 INSERT INTO Role_T(role_name) VALUES ('Student');
 INSERT INTO Role_T(role_name) VALUES ('Worker');
-INSERT INTO Role_T(role_name) VALUES ('Department Head')
-INSERT INTO Role_T(role_name) VALUES ('Faculty')
+INSERT INTO Role_T(role_name) VALUES ('Department Head');
+INSERT INTO Role_T(role_name) VALUES ('Faculty');
 
 /*
 Role table is taking the place of this for the time being
