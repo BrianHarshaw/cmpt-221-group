@@ -43,6 +43,8 @@ INSERT INTO Role_T(role_name) VALUES ('Worker');
 INSERT INTO Role_T(role_name) VALUES ('Department Head');
 INSERT INTO Role_T(role_name) VALUES ('Faculty');
 
+INSERT INTO User_T(email, password_hash, first_name, last_name, phone_number, role_id) VALUES ('brian.harshaw1@marist.edu', 'pbkdf2:sha256:F407E1D84DE41044FEAF978C975C71632F47138959D80D5018309F18088BC398', 'Brian', 'Harshaw', '8608051042', 1);
+
 /*
 Role table is taking the place of this for the time being
 CREATE TABLE IF NOT EXISTS Permission_T (
