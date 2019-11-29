@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 ## Below works without the roles. Need to setup the specific actions each user can do in each role.
 ## Need to implement Database and login before the roles can go to their respective pages
+## Code for above is @roles_required('__role_here__') and after the @app.route
 
 @app.route('/')
 def index():

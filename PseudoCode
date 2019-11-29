@@ -1,0 +1,19 @@
+Another way to do the roles and their unique pages is having an identifier like the role be compared at the login page.
+This could then be redirected to the proper page for each role instead of having a seperate @app.route for each.
+Pseudo Code is as follows:
+
+Form:
+    Login
+        Require Username and Password
+        Validation of Login
+        If validaton == pass
+            Comparison of roles through database
+                Matching of Roles
+                    If Role == Student
+                        return redirect('/student/dashboard')
+                    Else Role == etc.
+                        return redirect('/etc/dashboard')
+        Else
+            Send error message to redo login
+
+We can do that for all the others and keep the templates already created.
