@@ -5,6 +5,7 @@ from flask_login import login_user, logout_user, login_required
 from . import auth
 from ..models import User
 from .forms import LoginForm
+from app.models import *
 
 
 # Login view for user
@@ -12,14 +13,12 @@ from .forms import LoginForm
 def login():
     # Get login form
     form = LoginForm()
-    #return render_template('auth/login.html', title='Sign In', form=form)
+    #return render_template('auth/login.html', title='Sign In', form=LoginForm)
 
-    # Onces a user submits the form do this
+    # Once a user submits the form do this
     if form.validate_on_submit():
-
         # Query the user table by email
         user = User.query.filter_by(email=form.email.data.lower()).first()
-
         # If user is not empty and password verified
         if user is not None and user.verify_password(form.password.data):
             # Login the user by a built in Flask-Login function
