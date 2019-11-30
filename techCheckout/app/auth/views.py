@@ -29,8 +29,7 @@ def login():
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
                 next = '/index'
-            return redirect(next)
-
+            return redirect('/auth',next)
         # If the email or password incorrect flash a warning
         flash('Invalid email or password.')
         
@@ -49,4 +48,4 @@ def index():
 def logout():
     logout_user()
     flash('You have been logged out.')
-    return redirect('/login')
+    return redirect('/auth','/login')
