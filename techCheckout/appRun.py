@@ -12,6 +12,7 @@ app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 def make_shell_context():
     return dict(db=db, User=User, Role=Role)
 
+
 # Run Flask Programmatically
 if __name__ == "__main__":
     # Set Debug to true, set host IP to localhost, and set port to 80

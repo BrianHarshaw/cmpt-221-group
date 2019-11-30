@@ -24,7 +24,7 @@ class Role(db.Model):
 
 
 # Describing the User Table
-class User(db.Model):
+class User(db.Model, UserMixin):
     # Overriding the default name "User" with users
     __tablename__ = "user_t"
 
