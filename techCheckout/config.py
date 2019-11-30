@@ -16,14 +16,14 @@ class Config:
     DATABASE_IP = os.environ.get('DATABASE_IP') or "127.0.0.1"
     DATABASE_PORT = os.environ.get('DATABASE_PORT') or "5432"
     DATABASE_USERNAME = os.environ.get('DATABASE_USERNAME') or "postgres"
-    DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD') or "password"
+    DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD') or "Wasdwasd123"
     DATABASE_NAME = os.environ.get('DATABASE_NAME') or ""
 
     # Allows use to call SQLALCHEMY_DATABASE_URI as if it was set as attribute  in this class
     @property
     def SQLALCHEMY_DATABASE_URI(self):
-        return "postgresql://{username}:{passowrd}@{ip}:{port}/{name}".format(username=self.DATABASE_USERNAME,
-                                                                              passowrd=self.DATABASE_PASSWORD,
+        return "postgresql://{username}:{password}@{ip}:{port}/{name}".format(username=self.DATABASE_USERNAME,
+                                                                              password=self.DATABASE_PASSWORD,
                                                                               ip=self.DATABASE_IP,
                                                                               port=self.DATABASE_PORT,
                                                                               name=self.DATABASE_NAME)
