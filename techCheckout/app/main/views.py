@@ -7,12 +7,13 @@ from .. import db
 from ..models import User, Asset
 from . import main
 from .forms import ContactForm, AddAsset
-
+from flask_login import login_user, logout_user, login_required
 
 
 # Allows us to declare our views outside the global scope.
 # Declare our route to query last names
 @main.route('/<last_name>', methods=['GET'])
+@login_required
 def last_query(last_name):
     # Query Database for information
     user = User.query.filter_by(last_name=last_name).first()
@@ -27,6 +28,7 @@ def last_query(last_name):
 #Route that brings a verified user to the add asset form
 #Looked up that engines are a good way to add data to a database
 @main.route('/addAsset',methods=['GET','POST'])
+@login_required
 def addAsset():
 
     form=AddAsset()
@@ -42,6 +44,16 @@ def addAsset():
         return redirect('/index')
 
     return render_template('/addAsset.html', form=form)
+
+@main.route('/viewAsset')
+@login_required
+def viewAsset():
+    return render_template('/viewAsset.html')
+
+@main.route('/modifyAsset')
+@login_required
+def modifyAsset():
+    return render_template('/modifyAsset.html')
 
 # redirect root route to login screen
 @main.route('/')
