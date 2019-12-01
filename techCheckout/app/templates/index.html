@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--"{{ url_for ('static',filename='vendor/fontawesome-free/css/all.min.css')}}"-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +11,10 @@
   <title>Group 5 - Landing</title>
 
   <!-- Custom fonts for this template-->
-  <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="{{url_for ('static', filename='vendor/fontawesome-free/css/all.css')}}" rel="stylesheet" type="text/css">
   
   <!-- Custom styles for this template-->
-  <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{{url_for ('static',filename='css/sb-admin-2.css')}}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -51,6 +51,10 @@
         <a class="nav-link" href="#" >
           <i class="fas fa-fw fa-plus"></i>
           <span>Add New Asset</span>
+        <div class="modal-body">Select 'Add' to add a new asset.</div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" href="/addAsset">Add</a>
+        </div>
         </a>
       </li>
       <li class="nav-item">
@@ -161,7 +165,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Hello {{ current_user.first_name }}!</h6>
                 </div>
                 <div class="card-body">
-                    <p>Welcome to Group 5's website. You are a {{ current_user.role_id }}.</p>
+                    <p>Welcome to Group 5's website. You are a {{ current_user.role_id}}.</p>
                 </div>
               </div>
 
