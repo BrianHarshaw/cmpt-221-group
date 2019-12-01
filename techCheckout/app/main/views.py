@@ -26,8 +26,8 @@ def last_query(last_name):
 
 #Route that brings a verified user to the add asset form
 #Looked up that engines are a good way to add data to a database
-@main.route('/addNewAsset',methods=['GET','POST'])
-def addNewAsset():
+@main.route('/addAsset',methods=['GET','POST'])
+def addAsset():
 
     form=AddAsset()
     if form.validate_on_submit():
@@ -39,6 +39,9 @@ def addNewAsset():
             department_id=form.DID.data)
         engAdd = engine.connect()
         engAdd.execute(ins)
+        return redirect('/index')
+
+    return render_template('/addAsset.html', form=form)
 
 # redirect root route to login screen
 @main.route('/')
