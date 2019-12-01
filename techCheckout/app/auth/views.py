@@ -28,7 +28,12 @@ def login():
             # If next not set, we redirect user to login page
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
-                next = '/index'
+                #This is where the different authorizations are split into their respective templates
+                #with the functionality they should have
+                if user.role_id==2 or user.role_id==5:
+                    next = '/studentFac'
+                else:
+                    next = '/index'
             return redirect('/auth',next)
         # If the email or password incorrect flash a warning
         flash('Invalid email or password.')
@@ -41,6 +46,13 @@ def login():
 @login_required
 def index():
     return render_template('index.html')
+
+# Main Index Page
+@auth.route('/')
+@auth.route('/studentFac')
+@login_required
+def index():
+    return render_template('studentFac.html')
 
 # Logout Notification, return to login page
 @auth.route('/logout')
