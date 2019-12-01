@@ -22,6 +22,33 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.role_name
 
+#Tried to make models for other tables but they were throwing errors on initialization
+class Department(db.Model):
+    __tablename__='department_t'
+
+    department_id=db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
+    department_name=db.Column(db.Text,nullable=False)
+    location=db.Column(db.Text,nullable=False)
+    budget=db.Column(db.BIGINT,nullable=False)
+
+    asset_t = db.relationship('Asset', backref='department', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Department %r>' % self.department_name
+
+class Asset(db.Model):
+    __tablename__='asset_t'
+
+    asset_id=db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
+    user_id=db.Column(db.Integer, db.ForeignKey('user_t.user_id'))
+    status=db.Column(db.Text,nullable=False)
+    model=db.Column(db.Text,nullable=False)
+    asset_name=db.Column(db.Text,nullable=False)
+    department_id=db.Column(db.Integer, db.ForeignKey('department_t.department_id'))
+
+    def __repr__(self):
+         return '<Asset %r>' % self.asset_name
+
 
 # Describing the User Table
 class User(db.Model, UserMixin):
