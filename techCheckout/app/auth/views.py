@@ -48,10 +48,9 @@ def index():
     return render_template('index.html')
 
 # Main Index Page
-@auth.route('/')
 @auth.route('/studentFac')
 @login_required
-def index():
+def index_sf():
     return render_template('studentFac.html')
 
 # Logout Notification, return to login page

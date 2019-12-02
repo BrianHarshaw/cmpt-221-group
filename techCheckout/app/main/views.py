@@ -57,7 +57,7 @@ def modifyAsset():
 
 # redirect root route to login screen
 @main.route('/')
-def index():
+def index_login():
     return redirect("/auth/login")
 
 

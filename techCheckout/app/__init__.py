@@ -3,7 +3,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from techCheckout.config import config
+from config import config
 
 # Create the db object but do not initialize it just yet. Need this here for scope/used in other files like models.py
 db = SQLAlchemy()

@@ -7,9 +7,9 @@ from wtforms.validators import DataRequired, Length, Email
 
 # login form for login page
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Length(1, 64),
-                                             Email(), ], render_kw={"placeholder": "Enter Email Address..."})
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()],
+                        render_kw={"placeholder": "Enter Email Address..."})
     password = PasswordField('Password', validators=[DataRequired()],
-                             render_kw={"placeholder": "Enter Password..."})
+                            render_kw={"placeholder": "Enter Password..."})
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Log In')
