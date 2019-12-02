@@ -37,6 +37,26 @@
                                             <!-- Implementation that shows a users data on their own asset, and nobody else's unless admin.
                                                 Would most likely use a form that allows the user to enter the data in the fields they want to, with
                                                 null fields being ignored in changes.-->
+                                                <form action="" method="post" novalidate>
+                                                    {{ form.hidden_tag()}}
+                                                    <p>
+                                                    {{ form.asset_name.label }}<br>
+                                                    {{ form.asset_name(size=32) }}
+                                                    </p>
+                                                    <p>
+                                                    {{ form.model.label }}<br>
+                                                    {{ form.model(size=32) }}
+                                                    </p>
+                                                    <p>
+                                                    {{ form.status.label }}<br>
+                                                    {{ form.status(size=32) }}
+                                                    </p>
+                                                    <p>
+                                                    {{ form.deptid.label }}<br>
+                                                    {{ form.deptid(size=32) }}
+                                                    </p>
+                                                    <p>{{ form.submit() }}</p>
+                                                </form>
                                         </div>
                                     </div>
                                 </div>

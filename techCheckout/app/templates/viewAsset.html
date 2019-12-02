@@ -33,9 +33,19 @@
                                 <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">View Asset</h1>
                                             <!-- Implementation that shows a users data on their own asset, and nobody else's unless admin. Would
                                                 display paragraphs with all of the attributes of an asset with a given user_id attached to it.-->
+                                                <h1 class="h4 text-gray-900 mb-4">View Asset</h1>
+                                                <p><b>Name</b></p>
+                                                <p>{{ asset_name }}</p>
+                                                <p><b>Model</b></p>
+                                                <p>{{ asset_model }}</p>
+                                                <p><b>Status</b></p>
+                                                <p>{{ asset_status }}</p>
+                                                <p><b>Department ID</b></p>
+                                                <p>{{ asset_deptid }}</p>
+
+                                                <button href="/modifyAsset/{{ asset_id }}">Edit Asset</button>
                                         </div>
                                     </div>
                                 </div>
