@@ -59,12 +59,26 @@ def viewAsset():
             asset_status = asset.status,
             asset_deptid = asset.department_id)
 
-@main.route('/modifyAsset/<asset_id>')
+@main.route('/modifyAsset/<asset_id>',methods=['GET','POST'])
 @login_required
 def modifyAsset():
+    form=AssetForm()
     asset = Asset.query.filter_by(asset_id=asset_id).first()
 
-    return render_template('/modifyAsset.html')
+    if form.validate_on_submit():
+        asset.asset_name = form.asset_name.data
+        asset.model = form.model.data
+        asset.status = form.status.data
+        asset.department_id = form.department_id.data
+
+        session.commit()
+
+    form.asset_name.data = asset.asset_name
+    form.model.data = asset.model
+    form.status.data = asset.status
+    form.department_id.data = asset.department_id
+
+    return render_template('/modifyAsset.html', form=form)
 
 # redirect root route to login screen
 @main.route('/')
