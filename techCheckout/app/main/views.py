@@ -6,15 +6,23 @@ from sqlalchemy import create_engine
 from .. import db
 from ..models import User, Asset
 from . import main
-from .forms import ContactForm, AssetForm
+from .forms import ContactForm, AssetForm, SearchBarForm
 from flask_login import login_user, logout_user, login_required
 
 # Main Index Page
-@main.route('/')
-@main.route('/index')
+@main.route('/',methods=['GET','POST'])
+@main.route('/index',methods=['GET','POST'])
 @login_required
 def index():
-    return render_template('index.html')
+    form=SearchBarForm()
+
+    if form.validate_on_submit():
+        asset = Asset.query.filter_by(asset_name=form.name).first()
+
+        if asset != None:
+            return redirect("/viewAsset", asset.asset_id)
+
+    return render_template('index.html', sbform=form)
 
 # Main Index Page for studentFac
 @main.route('/studentFac')

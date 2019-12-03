@@ -30,6 +30,6 @@ class AssetForm(FlaskForm):
 #Search bar form
 class SearchBarForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(1, 64)],
-                        render_kw={"placeholder": "Enter Asset Name..."})
-    submit = SubmitField('Submit')
+                        render_kw={"placeholder": "Search by Asset Name..."})
+    submit = SubmitField('Search')
 
