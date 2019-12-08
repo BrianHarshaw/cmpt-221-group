@@ -57,8 +57,8 @@ INSERT INTO Role_T(role_name) VALUES ('worker');
 INSERT INTO Role_T(role_name) VALUES ('department head');
 INSERT INTO Role_T(role_name) VALUES ('faculty');
 
-INSERT INTO Department_T(department_name,location, budget) VALUES ('computer science','hancock',500000)
-INSERT INTO Department_T(department_name,location, budget) VALUES ('math','hancock',1)
+INSERT INTO Department_T(department_name,location, budget) VALUES ('computer science','hancock',500000);
+INSERT INTO Department_T(department_name,location, budget) VALUES ('math','hancock',1);
 
 
 INSERT INTO User_T(email, password_hash, first_name, last_name, phone_number, role_id) VALUES ('brian.harshaw1@marist.edu', 'pbkdf2:sha256:150000$EtOqtq89$7cd8d6bbfc4005c348242921ccf4509e457ef23e26e7a9832d15a151f24c6a9f', 'Brian', 'Harshaw', '8608051042', 1);
