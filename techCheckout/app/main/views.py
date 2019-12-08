@@ -58,10 +58,10 @@ def addAsset():
 @main.route('/viewAsset/<asset_id>')
 @login_required
 def viewAsset():
-    asset = Asset.query.filter_by(asset_id=asset_id).first()
+    asset = Asset.query.filter_by(asset_id=Asset.asset_id).first()
 
     return render_template('/viewAsset.html', 
-            asset_id = asset_id,
+            asset_id = asset.asset_id,
             asset_name = asset.asset_name,
             asset_model = asset.model,
             asset_status = asset.status,
@@ -71,7 +71,7 @@ def viewAsset():
 @login_required
 def modifyAsset():
     form=AssetForm()
-    asset = Asset.query.filter_by(asset_id=asset_id).first()
+    asset = Asset.query.filter_by(asset_id=Asset.asset_id).first()
 
     if form.validate_on_submit():
         asset.asset_name = form.asset_name.data
