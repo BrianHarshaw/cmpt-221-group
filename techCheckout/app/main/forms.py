@@ -4,7 +4,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Optional
 
-
 # A spot to put most of our Forms
 # Contact form
 class ContactForm(FlaskForm):
@@ -14,11 +13,23 @@ class ContactForm(FlaskForm):
     message = TextAreaField("Message", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+#Asset form for adding and modifying assets
+class AssetForm(FlaskForm):
+    uid = IntegerField('User ID', validators=[DataRequired(), Length(1, 64)],
+                        render_kw={"placeholder": "Enter User ID..."})
+    name = StringField('Name', validators=[DataRequired(), Length(1, 64)],
+                        render_kw={"placeholder": "Enter Asset Name..."})
+    model = StringField('Model', validators=[DataRequired(), Length(1, 64)],
+                        render_kw={"placeholder": "Enter Asset Model..."})
+    status = StringField('Status', validators=[DataRequired(), Length(1, 64)],
+                        render_kw={"placeholder": "Enter Asset Status..."})
+    deptid = IntegerField('Department ID', validators=[DataRequired(), Length(1, 64)],
+                        render_kw={"placeholder": "Enter Department ID..."})
+    submit = SubmitField('Submit')
 
-class AddAsset(FlaskForm):
-    UID = StringField("User ID", validators=[DataRequired()])
-    status = StringField("Status", validators=[DataRequired()])
-    model = StringField("Model", validators=[DataRequired()])
-    asset_name = StringField("Asset Name", validators=[DataRequired()])
-    DID = StringField("Department ID", validators=[DataRequired()])
-    submit = SubmitField("Submit")
+#Search bar form
+class SearchBarForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(1, 64)],
+                        render_kw={"placeholder": "Search by Asset Name..."})
+    submit = SubmitField('Search')
+

@@ -1,8 +1,8 @@
 #Base code taken from https://github.com/Dr-Crow/cmpt-221-examples/tree/master/Examples/example_of_new_layout
 #and then altered to match our needs.
 import os
-from techCheckout.app import create_app, db
-from techCheckout.app.models import User, Role
+from app import create_app, db
+from app.models import User, Role
 
 # Creates an app using our function create_app. Also passes in default for config is nothing is set
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')

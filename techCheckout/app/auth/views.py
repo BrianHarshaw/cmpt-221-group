@@ -19,6 +19,7 @@ def login():
     if form.validate_on_submit():
         # Query the user table by email
         user = User.query.filter_by(email=form.email.data.lower()).first()
+
         # If user is not empty and password verified
         if user is not None and user.verify_password(form.password.data):
             # Login the user by a built in Flask-Login function
@@ -34,25 +35,11 @@ def login():
                     next = '/studentFac'
                 else:
                     next = '/index'
-            return redirect('/auth',next)
+            return redirect(next)
         # If the email or password incorrect flash a warning
         flash('Invalid email or password.')
         
     return render_template('auth/login.html', form=form)
-
-# Main Index Page
-@auth.route('/')
-@auth.route('/index')
-@login_required
-def index():
-    return render_template('index.html')
-
-# Main Index Page
-@auth.route('/')
-@auth.route('/studentFac')
-@login_required
-def index():
-    return render_template('studentFac.html')
 
 # Logout Notification, return to login page
 @auth.route('/logout')

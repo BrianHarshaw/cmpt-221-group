@@ -6,60 +6,92 @@ from sqlalchemy import create_engine
 from .. import db
 from ..models import User, Asset
 from . import main
-from .forms import ContactForm, AddAsset
+from .forms import ContactForm, AssetForm, SearchBarForm
 from flask_login import login_user, logout_user, login_required
 
-
-# Allows us to declare our views outside the global scope.
-# Declare our route to query last names
-@main.route('/<last_name>', methods=['GET'])
+# Main Index Page
+@main.route('/',methods=['GET','POST'])
+@main.route('/index',methods=['GET','POST'])
 @login_required
-def last_query(last_name):
-    # Query Database for information
-    user = User.query.filter_by(last_name=last_name).first()
-    if user is None:
-        return "<p>The user you looked up can not be found!</p>", 200
-    else:
-        return "<p>First Name: {first_name} Last Name: {last_name} Email: {email}</p>".format(
-            first_name=user.first_name,
-            last_name=user.last_name,
-            email=user.email), 200
+def index():
+    form=SearchBarForm()
+
+    if form.validate_on_submit():
+        asset = Asset.query.filter_by(asset_name=form.name).first()
+
+        if asset != None:
+            return redirect("/viewAsset", asset.asset_id)
+
+    return render_template('index.html', sbform=form)
+
+# Main Index Page for studentFac
+@main.route('/studentFac')
+@login_required
+def index_sf():
+    return render_template('studentFac.html')
 
 #Route that brings a verified user to the add asset form
 #Looked up that engines are a good way to add data to a database
 @main.route('/addAsset',methods=['GET','POST'])
 @login_required
 def addAsset():
+    form=AssetForm()
 
-    form=AddAsset()
     if form.validate_on_submit():
         db_uri = 'sqlite:///db.sqlite'
         engine = create_engine(db_uri)
+
         ins = Asset.insert().values(
-            user_id=form.UID.data,status=form.status.data,
-            model=form.model.data,asset_name=form.asset_name.data,
-            department_id=form.DID.data)
+            user_id = form.uid.data,
+            asset_name = form.asset_name.data,
+            model = form.model.data,
+            status = form.status.data,
+            department_id = form.deptid.data)
+
         engAdd = engine.connect()
         engAdd.execute(ins)
+
         return redirect('/index')
 
     return render_template('/addAsset.html', form=form)
 
-@main.route('/viewAsset')
+@main.route('/viewAsset/<asset_id>')
 @login_required
 def viewAsset():
-    return render_template('/viewAsset.html')
+    asset = Asset.query.filter_by(asset_id=asset_id).first()
 
-@main.route('/modifyAsset')
+    return render_template('/viewAsset.html', 
+            asset_id = asset_id,
+            asset_name = asset.asset_name,
+            asset_model = asset.model,
+            asset_status = asset.status,
+            asset_deptid = asset.department_id)
+
+@main.route('/modifyAsset/<asset_id>',methods=['GET','POST'])
 @login_required
 def modifyAsset():
-    return render_template('/modifyAsset.html')
+    form=AssetForm()
+    asset = Asset.query.filter_by(asset_id=asset_id).first()
+
+    if form.validate_on_submit():
+        asset.asset_name = form.asset_name.data
+        asset.model = form.model.data
+        asset.status = form.status.data
+        asset.department_id = form.department_id.data
+
+        session.commit()
+
+    form.asset_name.data = asset.asset_name
+    form.model.data = asset.model
+    form.status.data = asset.status
+    form.department_id.data = asset.department_id
+
+    return render_template('/modifyAsset.html', form=form)
 
 # redirect root route to login screen
 @main.route('/')
-def index():
+def index_login():
     return redirect("/auth/login")
-
 
 # redirect /login to /auth/login
 @main.route("/login")
