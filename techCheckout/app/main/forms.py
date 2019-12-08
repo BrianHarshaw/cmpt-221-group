@@ -15,21 +15,21 @@ class ContactForm(FlaskForm):
 
 #Asset form for adding and modifying assets
 class AssetForm(FlaskForm):
-    uid = IntegerField('User ID', validators=[DataRequired(), Length(1, 64)],
+    uid = StringField('User ID', validators=[DataRequired()],
                         render_kw={"placeholder": "Enter User ID..."})
-    name = StringField('Name', validators=[DataRequired(), Length(1, 64)],
+    asset_name = StringField('Name', validators=[DataRequired()],
                         render_kw={"placeholder": "Enter Asset Name..."})
-    model = StringField('Model', validators=[DataRequired(), Length(1, 64)],
+    model = StringField('Model', validators=[DataRequired()],
                         render_kw={"placeholder": "Enter Asset Model..."})
-    status = StringField('Status', validators=[DataRequired(), Length(1, 64)],
+    status = StringField('Status', validators=[DataRequired()],
                         render_kw={"placeholder": "Enter Asset Status..."})
-    deptid = IntegerField('Department ID', validators=[DataRequired(), Length(1, 64)],
+    deptid = StringField('Department ID', validators=[DataRequired()],
                         render_kw={"placeholder": "Enter Department ID..."})
     submit = SubmitField('Submit')
 
 #Search bar form
 class SearchBarForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(), Length(1, 64)],
+    name = StringField('Name', validators=[DataRequired()],
                         render_kw={"placeholder": "Search by Asset Name..."})
     submit = SubmitField('Search')
 
