@@ -22,7 +22,7 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.role_name
 
-#Tried to make models for other tables but they were throwing errors on initialization
+#Model for the department table
 class Department(db.Model):
     __tablename__='department_t'
 
@@ -36,6 +36,7 @@ class Department(db.Model):
     def __repr__(self):
         return '<Department %r>' % self.department_name
 
+#Model for the asset table
 class Asset(db.Model):
     __tablename__='asset_t'
 
