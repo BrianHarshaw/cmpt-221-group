@@ -55,6 +55,7 @@ def addAsset():
 
     return render_template('/addAsset.html', form=form)
 
+#Route to view an asset by inputting the asset id
 @main.route('/viewAsset/<asset_id>')
 @login_required
 def viewAsset():
@@ -67,6 +68,7 @@ def viewAsset():
             asset_status = asset.status,
             asset_deptid = asset.department_id)
 
+#Route that would be taken to modify an asset, using the id to get to a page where that asset is displayed for modification
 @main.route('/modifyAsset/<asset_id>',methods=['GET','POST'])
 @login_required
 def modifyAsset():
