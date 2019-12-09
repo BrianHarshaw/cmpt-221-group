@@ -2,6 +2,7 @@
 #and then altered to match our needs.
 from flask import render_template, redirect, flash
 from sqlalchemy import create_engine
+from flask_login import current_user
 
 from .. import db
 from ..models import User, Asset
@@ -15,6 +16,11 @@ from flask_login import login_user, logout_user, login_required
 @login_required
 def index():
     form=SearchBarForm()
+
+    #Added in as a fairly poor, but functional way of preventing unauthorized access
+    user=current_user
+    if user.role_id == 2 or user.role_id == 5:
+        return redirect('/auth/login')
 
     if form.validate_on_submit():
         asset = Asset.query.filter_by(asset_name=form.name).first()
