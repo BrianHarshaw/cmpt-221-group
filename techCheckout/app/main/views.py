@@ -43,6 +43,11 @@ def index_sf():
 def addAsset():
     form=AssetForm()
 
+    # Added in as a fairly poor, but functional way of preventing unauthorized access
+    user = current_user
+    if user.role_id == 2 or user.role_id == 5:
+        return redirect('/auth/login')
+    
     if form.validate_on_submit():
         db_uri = 'sqlite:///db.sqlite'
         engine = create_engine(db_uri)
